@@ -6,8 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="mall-zlq" />
+        <module name="mall-admin" />
+        <module name="mall-amdin" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="mall-admin" target="1.6" />
+      <module name="mall-amdin" target="1.6" />
+      <module name="mall-zlq" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>
