@@ -8,11 +8,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="mall-admin" />
         <module name="mall-amdin" />
+        <module name="mall-mbg" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="mall-admin" target="1.6" />
       <module name="mall-amdin" target="1.6" />
+      <module name="mall-mbg" target="1.5" />
       <module name="mall-zlq" target="1.5" />
     </bytecodeTargetLevel>
   </component>
