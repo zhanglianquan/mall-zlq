@@ -8,7 +8,7 @@ mall项目是一套电商系统，包括前台商城系统及后台管理系统�
 本地安装部署步骤
 （1）克隆源代码到本地
 （2） 在mysql中新建mall数据库，导入document/sql下的mall.sql文件；
-    然后运行mall.sql 创建表
+    然后运行mall.sql 创建表， 不懂怎么用sql 文件创建数据表，请google一下
 （3）使用IDEA或Eclipse打开，并完成编译;
   （4） mall-mbg如果没有生成mapper 文件， 可以在idea 右键运行mall-mbg 下的Generator
 
