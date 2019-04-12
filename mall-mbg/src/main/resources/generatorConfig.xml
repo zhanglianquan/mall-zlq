@@ -31,7 +31,7 @@
         <sqlMapGenerator targetPackage="com.zlq.mall.mapper_xml" targetProject="mall-mbg/src/main/resources"/>
 
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.zlq.mall.mapper"
-                             targetProject="mall-mbg/src/main\java"/>
+                             targetProject="mall-mbg/src/main/java"/>
         <!--生成全部表tableName设为%-->
         <table tableName="%">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
