@@ -21,7 +21,7 @@ import java.util.List;
 
 
 
-@RestController
+@Controller
 @Api(tags = "CmsPrefrenceAreaController", description = "商品优选管理")
 @RequestMapping("/prefrenceArea")
 public class CmsPrefrenceAreaController {
@@ -34,12 +34,7 @@ public class CmsPrefrenceAreaController {
     @RequestMapping(value = "/listAll", method = RequestMethod.GET)
     @ResponseBody
     public  Object listAll(){
-//        Demo demo = new Demo();
-//        demo.setId(100);
-//        demo.setName("zhansan");
-//        return demo;
         List<CmsPrefrenceArea> prefrenceAreaList = prefrenceAreaService.listAll();
-//        return "hello";
         return new CommonResult().success(prefrenceAreaList);
     }
 }
