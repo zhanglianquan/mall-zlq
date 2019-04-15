@@ -1,6 +1,8 @@
 package com.zlq.mall.controller;
 
-import com.zlq.mall.service.CmsPrefrenceAreaService;
+import com.zlq.mall.dto.CommonResult;
+import com.zlq.mall.model.CmsSubject;
+import com.zlq.mall.service.CmsSubjectService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,31 +10,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.zlq.mall.dto.CommonResult;
-import com.zlq.mall.model.CmsPrefrenceArea;
 
 import java.util.List;
 
 /**
- * 商品优选管理Controller
+ * 商品专题Controller
  */
-
-
-
 @Controller
-@Api(tags = "CmsPrefrenceAreaController", description = "商品优选管理")
-@RequestMapping("/prefrenceArea")
-public class CmsPrefrenceAreaController {
-
+@Api(tags = "CmsSubjectController", description = "商品专题管理")
+@RequestMapping("/subject")
+public class CmsSubjectController {
     @Autowired
-    private CmsPrefrenceAreaService prefrenceAreaService;
+    private CmsSubjectService subjectService;
 
-
-    @ApiOperation("获取所有商品优选")
+    @ApiOperation(value = "获取全部商品专题")
     @RequestMapping(value = "/listAll", method = RequestMethod.GET)
     @ResponseBody
     public  Object listAll(){
-        List<CmsPrefrenceArea> prefrenceAreaList = prefrenceAreaService.listAll();
-        return new CommonResult().success(prefrenceAreaList);
+        List<CmsSubject> subjectList= subjectService.listAll();
+        return new CommonResult().success(subjectList);
     }
 }
