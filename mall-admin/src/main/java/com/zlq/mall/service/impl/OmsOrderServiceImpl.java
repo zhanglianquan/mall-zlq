@@ -26,4 +26,10 @@ public class OmsOrderServiceImpl implements OmsOrderService {
         example.createCriteria().andDeleteStatusEqualTo(0).andIdIn(ids);
         return orderMapper.updateByExampleSelective(record, example);
     }
+
+    @Override
+    public List<OmsOrder> list(){
+        return orderMapper.selectByExample(new OmsOrderExample());
+    }
+
 }

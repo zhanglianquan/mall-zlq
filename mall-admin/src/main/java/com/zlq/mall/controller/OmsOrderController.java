@@ -1,5 +1,6 @@
 package com.zlq.mall.controller;
 
+import com.zlq.mall.model.OmsOrder;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +34,12 @@ public class OmsOrderController {
             return new CommonResult().success(count);
         }
         return new CommonResult().failed();
+    }
+    @ApiOperation(value = "查询订单", notes = "根据指定条件查询订单信息")
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @ResponseBody
+    public  Object list(){
+        List<OmsOrder> orderList = orderService.list();
+        return new CommonResult().success(orderList);
     }
 }
