@@ -1,6 +1,8 @@
 package com.zlq.mall.service.impl;
 
 
+import com.github.pagehelper.PageHelper;
+import com.zlq.mall.dto.OmsOrderQueryParam;
 import com.zlq.mall.mapper.OmsOrderMapper;
 import com.zlq.mall.model.OmsOrder;
 import com.zlq.mall.model.OmsOrderExample;
@@ -28,7 +30,8 @@ public class OmsOrderServiceImpl implements OmsOrderService {
     }
 
     @Override
-    public List<OmsOrder> list(){
+    public List<OmsOrder> list(OmsOrderQueryParam queryParam, Integer pageNum, Integer pageSize){
+        PageHelper.startPage(pageNum, pageSize);
         return orderMapper.selectByExample(new OmsOrderExample());
     }
 

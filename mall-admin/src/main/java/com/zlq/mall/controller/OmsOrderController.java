@@ -1,5 +1,6 @@
 package com.zlq.mall.controller;
 
+import com.zlq.mall.dto.OmsOrderQueryParam;
 import com.zlq.mall.model.OmsOrder;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -38,8 +39,12 @@ public class OmsOrderController {
     @ApiOperation(value = "查询订单", notes = "根据指定条件查询订单信息")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public  Object list(){
-        List<OmsOrder> orderList = orderService.list();
+    public  Object getList(OmsOrderQueryParam queryParam,
+                           /*第几页*/
+                           @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
+                          /*每页记录数*/
+                           @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize){
+        List<OmsOrder> orderList = orderService.list(queryParam, pageSize, pageNum);
         return new CommonResult().success(orderList);
     }
 }
