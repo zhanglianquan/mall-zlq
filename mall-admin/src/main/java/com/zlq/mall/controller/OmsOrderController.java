@@ -44,7 +44,7 @@ public class OmsOrderController {
                            @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
                           /*每页记录数*/
                            @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize){
-        List<OmsOrder> orderList = orderService.list(queryParam, pageSize, pageNum);
-        return new CommonResult().success(orderList);
+        List<OmsOrder> orderList = orderService.list(queryParam, pageNum, pageSize);
+        return new CommonResult().pageSuccess(orderList);
     }
 }
