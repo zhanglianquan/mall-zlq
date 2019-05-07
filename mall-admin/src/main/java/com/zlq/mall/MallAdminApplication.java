@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 
 @SpringBootApplication
-@MapperScan({"com.zlq.mall.mapper"})
+@MapperScan({"com.zlq.mall.mapper", "com.zlq.mall.dao"})
 @EnableTransactionManagement
 public class MallAdminApplication {
     public static void main(String[] args) {

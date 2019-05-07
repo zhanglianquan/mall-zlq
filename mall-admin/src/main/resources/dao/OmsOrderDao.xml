@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zlq.mall.dao.OmsOrderDao">
+  <resultMap id="omsOrderQueryResultMap" type="com.zlq.mall.model.OmsOrder"
+             extends="com.zlq.mall.mapper.OmsOrderMapper.BaseResultMap">
+
+  </resultMap>
+  <select id="getOrderList" parameterType="com.zlq.mall.dto.OmsOrderQueryParam"
+          resultMap="omsOrderQueryResultMap">
+    SELECT *
+    FROM
+    oms_order
+    WHERE
+    delete_status = 0
+    <if test="queryParam.orderSn!=null and queryParam.orderSn!=''">
+      AND order_sn = #{queryParam.orderSn}
+    </if>
+    <if test="queryParam.receiverKeyword!=null and queryParam.receiverKeyword!=''">
+      AND (
+      receiver_name LIKE concat("%",#{queryParam.receiverKeyword},"%")
+      OR receiver_phone LIKE concat("%",#{queryParam.receiverKeyword},"%")
+      )
+    </if>
+    <if test="queryParam.status!=null">
+      AND `status` = #{queryParam.status}
+    </if>
+    <if test="queryParam.orderType!=null">
+      AND order_type = #{queryParam.orderType}
+    </if><if test="queryParam.sourceType!=null">
+      AND source_type = #{queryParam.sourceType}
+    </if>
+    <if test="queryParam.createTime!=null and queryParam.createTime!=''">
+      AND create_time LIKE concat(#{queryParam.createTime}, '%')
+    </if>
+
+  </select>
+</mapper>

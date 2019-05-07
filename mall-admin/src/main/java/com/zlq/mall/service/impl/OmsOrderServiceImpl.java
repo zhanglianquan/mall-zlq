@@ -2,6 +2,7 @@ package com.zlq.mall.service.impl;
 
 
 import com.github.pagehelper.PageHelper;
+import com.zlq.mall.dao.OmsOrderDao;
 import com.zlq.mall.dto.OmsOrderQueryParam;
 import com.zlq.mall.mapper.OmsOrderMapper;
 import com.zlq.mall.model.OmsOrder;
@@ -20,6 +21,9 @@ public class OmsOrderServiceImpl implements OmsOrderService {
     @Autowired
     private OmsOrderMapper orderMapper;
 
+    @Autowired
+    private OmsOrderDao orderDao;
+
     @Override
     public int delete(List<Long> ids) {
         OmsOrder record = new OmsOrder();
@@ -32,7 +36,7 @@ public class OmsOrderServiceImpl implements OmsOrderService {
     @Override
     public List<OmsOrder> list(OmsOrderQueryParam queryParam, Integer pageNum, Integer pageSize){
         PageHelper.startPage(pageNum, pageSize);
-        return orderMapper.selectByExample(new OmsOrderExample());
+        return orderDao.getOrderList(queryParam);
     }
 
 }
