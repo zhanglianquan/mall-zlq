@@ -28,6 +28,9 @@ mall项目是一套电商系统，包括前台商城系统及后台管理系统�
 源代码： https://github.com/macrozheng/mall
 ## 其他代码： https://github.com/D2C-Cai/shop-mall
 ## https://gitee.com/zscat-platform/mall
+## https://github.com/shenzhuan/mallcloud-platform
+## https://github.com/shenzhuan/mall-dubbo
+## https://github.com/shenzhuan/mallplus
 ### 项目演示
 
 > 后台管理系统
