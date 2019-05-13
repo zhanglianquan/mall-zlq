@@ -66,4 +66,12 @@
     ORDER BY oi.id ASC, oms_his.create_time DESC
   </select>
 
+  <update id="delivery">
+     UPDATE oms_order
+     SET
+     delivery_company = '圆通'
+     WHERE
+     id = 15
+
+  </update>
 </mapper>

@@ -1,5 +1,6 @@
 package com.zlq.mall.dao;
 
+import com.zlq.mall.dto.OmsOrderDeliveryParam;
 import com.zlq.mall.dto.OmsOrderDetail;
 import com.zlq.mall.dto.OmsOrderQueryParam;
 import com.zlq.mall.model.OmsOrder;
@@ -26,5 +27,13 @@ public interface OmsOrderDao {
      * @return 符合条件的订单.
      */
     OmsOrderDetail getOrderDetail(@Param("id") Long id);
+
+
+    /**
+     * 批量发货
+     * @param deliveryParamList 订单发货参数 .
+     * @return 成功或失败.
+     */
+    int delivery(@Param("delivery_list") List<OmsOrderDeliveryParam> deliveryParamList);
 
 }

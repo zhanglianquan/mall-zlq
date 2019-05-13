@@ -50,7 +50,8 @@ public class OmsOrderServiceImpl implements OmsOrderService {
     @Override
     public int delivery(List<OmsOrderDeliveryParam> deliveryParamList){
         //批量发货
-        return 0;
+        int count = orderDao.delivery(deliveryParamList);
+        return count;
     }
 
 }
