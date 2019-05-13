@@ -1,15 +1,14 @@
 package com.zlq.mall.controller;
 
+import com.zlq.mall.dto.OmsOrderDeliveryParam;
+import com.zlq.mall.dto.OmsOrderDetail;
 import com.zlq.mall.dto.OmsOrderQueryParam;
 import com.zlq.mall.model.OmsOrder;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import com.zlq.mall.dto.CommonResult;
 import com.zlq.mall.service.OmsOrderService;
 
@@ -46,5 +45,24 @@ public class OmsOrderController {
                            @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize){
         List<OmsOrder> orderList = orderService.list(queryParam, pageNum, pageSize);
         return new CommonResult().pageSuccess(orderList);
+    }
+
+    @ApiOperation(value = "获取订单详情:订单信息、商品信息、操作记录")
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public Object getOrderDetail(@PathVariable(value = "id", required = true) Long id){
+        OmsOrderDetail orderDetailResult = orderService.getOrderDetail(id);
+        return new CommonResult().success(orderDetailResult);
+    }
+
+    @ApiOperation(value = "批量发货")
+    @RequestMapping(value = "/update/delivery", method = RequestMethod.POST)
+    @ResponseBody
+    public Object delivery(@RequestBody List<OmsOrderDeliveryParam> deliveryParamList){
+        int count = orderService.delivery(deliveryParamList);
+        if (count > 0) {
+            return new CommonResult().success(count);
+        }
+        return new CommonResult().failed();
     }
 }

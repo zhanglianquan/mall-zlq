@@ -1,5 +1,6 @@
 package com.zlq.mall.dao;
 
+import com.zlq.mall.dto.OmsOrderDetail;
 import com.zlq.mall.dto.OmsOrderQueryParam;
 import com.zlq.mall.model.OmsOrder;
 import org.apache.ibatis.annotations.Param;
@@ -18,4 +19,12 @@ public interface OmsOrderDao {
      * @return 符合条件的订单.
      */
     List<OmsOrder> getOrderList(@Param("queryParam") OmsOrderQueryParam queryParam);
+
+    /**
+     * 订单详情
+     * @param id 订单id .
+     * @return 符合条件的订单.
+     */
+    OmsOrderDetail getOrderDetail(@Param("id") Long id);
+
 }

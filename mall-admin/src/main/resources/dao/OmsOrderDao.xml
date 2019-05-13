@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zlq.mall.dao.OmsOrderDao">
-  <resultMap id="omsOrderQueryResultMap" type="com.zlq.mall.model.OmsOrder"
+  <resultMap id="omsOrderDetailResultMap" type="com.zlq.mall.dto.OmsOrderDetail"
              extends="com.zlq.mall.mapper.OmsOrderMapper.BaseResultMap">
-
+    <collection property="orderItemList" resultMap="com.zlq.mall.mapper.OmsOrderItemMapper.BaseResultMap"
+                columnPrefix="item_"/>
+    <collection property="historyList" resultMap="com.zlq.mall.mapper.OmsOrderOperateHistoryMapper.BaseResultMap"
+                columnPrefix="history_"/>
   </resultMap>
   <select id="getOrderList" parameterType="com.zlq.mall.dto.OmsOrderQueryParam"
-          resultMap="omsOrderQueryResultMap">
+          resultMap="com.zlq.mall.mapper.OmsOrderMapper.BaseResultMap">
     SELECT *
     FROM
     oms_order
@@ -34,4 +37,33 @@
     </if>
 
   </select>
+
+  <select id="getOrderDetail" resultMap="omsOrderDetailResultMap">
+    SELECT oms_order.*,
+        oi.id item_id,
+        oi.product_id item_product_id,
+        oi.product_sn item_product_sn,
+        oi.product_pic item_product_pic,
+        oi.product_name item_product_name,
+        oi.product_brand item_product_brand,
+        oi.product_price item_product_price,
+        oi.product_quantity item_product_quantity,
+        oi.product_attr item_product_attr,
+        oi.product_category_id item_product_category_id,
+        oi.sp1 item_sp1,
+        oi.sp2 item_sp2,
+        oi.sp3 item_sp3,
+        oms_his.id history_id,
+        oms_his.operate_man history_operate_man,
+        oms_his.create_time history_create_time,
+        oms_his.order_status history_order_status,
+        oms_his.note history_note
+    FROM oms_order
+    LEFT JOIN oms_order_item oi ON oms_order.id = oi.order_id
+    LEFT JOIN oms_order_operate_history oms_his ON oms_order.id = oms_his.order_id
+    WHERE
+    oms_order.id = #{id}
+    ORDER BY oi.id ASC, oms_his.create_time DESC
+  </select>
+
 </mapper>

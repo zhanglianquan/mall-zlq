@@ -3,6 +3,8 @@ package com.zlq.mall.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.zlq.mall.dao.OmsOrderDao;
+import com.zlq.mall.dto.OmsOrderDeliveryParam;
+import com.zlq.mall.dto.OmsOrderDetail;
 import com.zlq.mall.dto.OmsOrderQueryParam;
 import com.zlq.mall.mapper.OmsOrderMapper;
 import com.zlq.mall.model.OmsOrder;
@@ -37,6 +39,18 @@ public class OmsOrderServiceImpl implements OmsOrderService {
     public List<OmsOrder> list(OmsOrderQueryParam queryParam, Integer pageNum, Integer pageSize){
         PageHelper.startPage(pageNum, pageSize);
         return orderDao.getOrderList(queryParam);
+    }
+
+
+    @Override
+    public OmsOrderDetail getOrderDetail(Long id){
+        return orderDao.getOrderDetail(id);
+    }
+
+    @Override
+    public int delivery(List<OmsOrderDeliveryParam> deliveryParamList){
+        //批量发货
+        return 0;
     }
 
 }
