@@ -34,6 +34,6 @@ public interface OmsOrderDao {
      * @param deliveryParamList 订单发货参数 .
      * @return 成功或失败.
      */
-    int delivery(@Param("delivery_list") List<OmsOrderDeliveryParam> deliveryParamList);
+    int delivery(@Param("deliverList") List<OmsOrderDeliveryParam> deliveryParamList);
 
 }

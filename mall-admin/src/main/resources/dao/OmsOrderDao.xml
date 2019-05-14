@@ -67,11 +67,19 @@
   </select>
 
   <update id="delivery">
-     UPDATE oms_order
-     SET
-     delivery_company = '圆通'
-     WHERE
-     id = 15
+      UPDATE oms_order
+      SET
+      delivery_company = CASE id
+      <foreach collection="deliverList">
+       WHEN #{itemIter.orderId} THEN #{itemIter.deliveryCompany}
+      </foreach>
+      END
+      WHERE
+      id IN
+      <foreach collection="deliverList" open="(" close=")" item="itemIter" separator=",">
+          #{itemIter.orderId}
+      </foreach>
+
 
   </update>
 </mapper>
