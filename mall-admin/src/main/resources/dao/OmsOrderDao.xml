@@ -70,16 +70,37 @@
       UPDATE oms_order
       SET
       delivery_company = CASE id
-      <foreach collection="deliverList">
+      <foreach collection="deliverList" item="itemIter">
        WHEN #{itemIter.orderId} THEN #{itemIter.deliveryCompany}
       </foreach>
+      END,
+
+      delivery_sn = CASE id
+      <foreach collection="deliverList" item="itemIter">
+          WHEN #{itemIter.orderId} THEN #{itemIter.deliverySn}
+      </foreach>
+      END,
+
+      delivery_time = CASE id
+      <foreach collection="deliverList" item="itemIter">
+          WHEN #{itemIter.orderId} THEN now()
+      </foreach>
+      END,
+
+      `status` = CASE id
+      <foreach collection="deliverList" item="itemIter">
+          WHEN #{itemIter.orderId} THEN 2
+      </foreach>
       END
+
       WHERE
       id IN
       <foreach collection="deliverList" open="(" close=")" item="itemIter" separator=",">
           #{itemIter.orderId}
       </foreach>
 
-
+      AND `status` = 1
   </update>
+
+
 </mapper>
