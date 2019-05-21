@@ -1,15 +1,12 @@
 package com.zlq.mall.controller;
 
-import com.zlq.mall.dto.OmsOrderDeliveryParam;
-import com.zlq.mall.dto.OmsOrderDetail;
-import com.zlq.mall.dto.OmsOrderQueryParam;
+import com.zlq.mall.dto.*;
 import com.zlq.mall.model.OmsOrder;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import com.zlq.mall.dto.CommonResult;
 import com.zlq.mall.service.OmsOrderService;
 
 import java.util.List;
@@ -60,6 +57,18 @@ public class OmsOrderController {
     @ResponseBody
     public Object delivery(@RequestBody List<OmsOrderDeliveryParam> deliveryParamList){
         int count = orderService.delivery(deliveryParamList);
+        if (count > 0) {
+            return new CommonResult().success(count);
+        }
+        return new CommonResult().failed();
+    }
+
+
+    @ApiOperation(value = "批量关闭订单")
+    @RequestMapping(value = "/update/close", method = RequestMethod.POST)
+    @ResponseBody
+    public Object batchClose(OmsOrderBatchCloseParam batchCloseParam) {
+        int count = orderService.batchClose(batchCloseParam);
         if (count > 0) {
             return new CommonResult().success(count);
         }

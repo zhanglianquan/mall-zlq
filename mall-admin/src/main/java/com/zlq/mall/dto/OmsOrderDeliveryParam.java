@@ -18,5 +18,5 @@ public class OmsOrderDeliveryParam {
     private String deliverySn;
 
     @ApiModelProperty("订单id")
-    private Integer orderId;
+    private Long orderId;
 }

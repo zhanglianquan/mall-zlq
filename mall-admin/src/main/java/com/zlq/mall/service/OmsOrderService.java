@@ -1,9 +1,11 @@
 package com.zlq.mall.service;
 
+import com.zlq.mall.dto.OmsOrderBatchCloseParam;
 import com.zlq.mall.dto.OmsOrderDeliveryParam;
 import com.zlq.mall.dto.OmsOrderDetail;
 import com.zlq.mall.dto.OmsOrderQueryParam;
 import com.zlq.mall.model.OmsOrder;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -27,7 +29,14 @@ public interface OmsOrderService {
     /**
      * 批量发货
      */
+    @Transactional
     int delivery(List<OmsOrderDeliveryParam> deliveryParamList);
+
+    /**
+     * 批量关闭订单
+     */
+    @Transactional
+    int batchClose(OmsOrderBatchCloseParam batchCloseParam);
 
 
 }

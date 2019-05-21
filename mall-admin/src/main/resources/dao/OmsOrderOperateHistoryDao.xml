@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zlq.mall.dao.OmsOrderOperateHistoryDao">
+    <insert id="insertList">
+        INSERT INTO oms_order_operate_history (order_id, operate_man, create_time, order_status, note) VALUES
+        <foreach collection="historyList" separator="," item="item" index="index">
+            (#{item.orderId},
+            #{item.operateMan},
+            #{item.createTime},
+            #{item.orderStatus},
+            #{item.note})
+        </foreach>
+--         在实际应用中，经常碰到导入数据的功能，当导入的数据不存在时则进行添加，有修改时则进行更新,
+--         ON DUPLICATE key update 能够执行必须添加唯一或者主建索引：
+--         alter table oms_order_operate_history add unique key(order_id)
+        ON DUPLICATE key update  order_id=VALUES(order_id), operate_man=VALUES(operate_man),
+        create_time=VALUES(create_time),  order_status=VALUES(order_status), note=VALUES(note)
+    </insert>
+</mapper>
