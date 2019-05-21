@@ -1,9 +1,6 @@
 package com.zlq.mall.service;
 
-import com.zlq.mall.dto.OmsOrderBatchCloseParam;
-import com.zlq.mall.dto.OmsOrderDeliveryParam;
-import com.zlq.mall.dto.OmsOrderDetail;
-import com.zlq.mall.dto.OmsOrderQueryParam;
+import com.zlq.mall.dto.*;
 import com.zlq.mall.model.OmsOrder;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,6 +34,25 @@ public interface OmsOrderService {
      */
     @Transactional
     int batchClose(OmsOrderBatchCloseParam batchCloseParam);
+
+    /**
+    * 修改订单费用信息
+    */
+    @Transactional
+    int updateMoneyInfo(OmsMoneyInfoParam moneyInfoParam);
+
+    /**
+     * 修改订单备注
+     */
+    @Transactional
+    int updateNote(Long id, String note, Integer status);
+
+
+    /**
+     * 修改订单收货人信息
+     */
+    @Transactional
+    int updateReceiverInfo(OmsReceiverInfoParam receiverInfoParam);
 
 
 }

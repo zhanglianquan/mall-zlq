@@ -74,4 +74,41 @@ public class OmsOrderController {
         }
         return new CommonResult().failed();
     }
+
+    @ApiOperation(value = "修改订单费用信息")
+    @RequestMapping(value = "/update/moneyInfo", method = RequestMethod.POST)
+    @ResponseBody
+    public Object updateoneyInfo(@RequestBody OmsMoneyInfoParam moneyInfoParam) {
+        int count = orderService.updateMoneyInfo(moneyInfoParam);
+        if (count > 0) {
+            return new CommonResult().success(count);
+        }
+        return new CommonResult().failed();
+    }
+
+
+    @ApiOperation("备注订单")
+    @RequestMapping(value = "/update/note", method = RequestMethod.POST)
+    @ResponseBody
+    public Object updateNote(@RequestParam("id") Long id,
+                             @RequestParam("note") String note,
+                             @RequestParam("status") Integer status) {
+        int count = orderService.updateNote(id,note,status);
+        if (count > 0) {
+            return new CommonResult().success(count);
+        }
+        return new CommonResult().failed();
+    }
+
+    @ApiOperation("修改收货人信息")
+    @RequestMapping(value = "/update/receiverInfo", method = RequestMethod.POST)
+    @ResponseBody
+    public Object updateReceiverInfo(@RequestBody OmsReceiverInfoParam receiverInfoParam) {
+        int count = orderService.updateReceiverInfo(receiverInfoParam);
+        if (count > 0) {
+            return new CommonResult().success(count);
+        }
+        return new CommonResult().failed();
+    }
+
 }
