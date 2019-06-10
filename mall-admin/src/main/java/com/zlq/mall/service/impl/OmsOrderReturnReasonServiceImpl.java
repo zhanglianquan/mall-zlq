@@ -48,4 +48,28 @@ public class OmsOrderReturnReasonServiceImpl implements OmsOrderReturnReasonServ
         return returnReasonMapper.selectByExample(example);
 
     }
+
+    @Override
+    public int update(Long id, OmsOrderReturnReason returnReason) {
+        returnReason.setId(id);
+        return returnReasonMapper.updateByPrimaryKey(returnReason);
+    }
+
+    @Override
+    public int updateStatus(List<Long> ids, Integer status) {
+        if(!status.equals(0)&&!status.equals(1)){
+            return 0;
+        }
+        OmsOrderReturnReason record = new OmsOrderReturnReason();
+        record.setStatus(status);
+        OmsOrderReturnReasonExample example = new OmsOrderReturnReasonExample();
+        example.createCriteria().andIdIn(ids);
+        return returnReasonMapper.updateByExampleSelective(record,example);
+    }
+
+
+    @Override
+    public OmsOrderReturnReason getItem(Long id) {
+        return returnReasonMapper.selectByPrimaryKey(id);
+    }
 }
