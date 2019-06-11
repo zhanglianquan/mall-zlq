@@ -28,7 +28,7 @@ public class Swagger2Config {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.macro.mall.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.zlq.mall.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 //添加登录认证
