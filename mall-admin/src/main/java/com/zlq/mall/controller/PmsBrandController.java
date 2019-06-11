@@ -16,7 +16,9 @@ import java.util.List;
 
 /**
  * 品牌功能Controller
+ * mall整合SpringSecurity和JWT实现认证和授权
  * https://juejin.im/post/5cfa0933f265da1b8f1ab2da
+ * https://juejin.im/post/5cf90fa5e51d455d6d5357d3
  * @author zlq
  */
 @Controller
