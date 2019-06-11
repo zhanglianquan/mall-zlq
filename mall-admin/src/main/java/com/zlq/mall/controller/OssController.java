@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * Oss相关操作接口
- *
+ * https://www.alibabacloud.com/help/zh/doc-detail/32011.htm?spm=a2c63.p38356.879954.16.5d66219ffG8zoZ#concept-32011-zh
  * @author zlq
  */
 @Controller

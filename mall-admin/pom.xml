@@ -84,6 +84,12 @@
             <version>2.5.0</version>
         </dependency>
 
+        <!-- 权限验证 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>

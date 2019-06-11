@@ -19,8 +19,7 @@ mall项目是一套电商系统，包括前台商城系统及后台管理系统�
 运行测试看看效果：
     启动mall-admin项目：直接运行com.zlq.mall.MallAdminApplication的main方法即可， 
     web浏览器运行接口文档地址：http://localhost:9090/swagger-ui.html;
-    
-    
+    添加登录认证，提示要接口权限： https://juejin.im/post/5cfa0933f265da1b8f1ab2da
     
     
 # 转载： 
