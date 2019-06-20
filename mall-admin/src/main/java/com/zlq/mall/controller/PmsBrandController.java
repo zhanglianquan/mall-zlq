@@ -19,6 +19,7 @@ import java.util.List;
  * mall整合SpringSecurity和JWT实现认证和授权
  * https://juejin.im/post/5cfa0933f265da1b8f1ab2da
  * https://juejin.im/post/5cf90fa5e51d455d6d5357d3
+ * https://juejin.im/post/5cff98986fb9a07ed36ea139
  * @author zlq
  */
 @Controller
@@ -27,6 +28,7 @@ import java.util.List;
 public class PmsBrandController {
     @Autowired
     private PmsBrandService brandService;
+
     @ApiOperation(value = "获取全部品牌列表")
     @RequestMapping(value = "/listAll", method = RequestMethod.GET)
     @ResponseBody

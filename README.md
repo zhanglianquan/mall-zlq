@@ -30,6 +30,7 @@ mall项目是一套电商系统，包括前台商城系统及后台管理系统�
 ## https://github.com/shenzhuan/mallcloud-platform
 ## https://github.com/shenzhuan/mall-dubbo
 ## https://github.com/shenzhuan/mallplus
+## https://github.com/YunaiV/onemall
 ### 项目演示
 
 > 后台管理系统
