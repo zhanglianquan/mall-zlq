@@ -221,5 +221,42 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         }
         return count;
     }
+
+    @Override
+    public String refreshToken(String oldToken) {
+        String token = oldToken.substring(tokenHead.length());
+        if (jwtTokenUtil.canRefresh(token)) {
+            return jwtTokenUtil.refreshToken(token);
+        }
+        return null;
+    }
+
+    @Override
+    public UmsAdmin getItem(Long id) {
+        return adminMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public List<UmsAdmin> list(String name, Integer pageSize, Integer pageNum) {
+        PageHelper.startPage(pageNum, pageSize);
+        UmsAdminExample example = new UmsAdminExample();
+        UmsAdminExample.Criteria criteria = example.createCriteria();
+        if (!StringUtils.isEmpty(name)) {
+            criteria.andUsernameLike("%" + name + "%");
+            example.or(example.createCriteria().andNickNameLike("%" + name + "%"));
+        }
+        return adminMapper.selectByExample(example);
+    }
+
+    @Override
+    public int delete(Long id) {
+        return adminMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public int update(Long id, UmsAdmin admin) {
+        admin.setId(id);
+        return adminMapper.updateByPrimaryKey(admin);
+    }
 }
 

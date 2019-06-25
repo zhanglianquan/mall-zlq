@@ -57,4 +57,31 @@ public interface UmsAdminService {
      */
     @Transactional
     int updateRole(Long adminId, List<Long> roleIds);
+
+    /**
+     * 删除指定用户
+     */
+    int delete(Long id);
+
+    /**
+     * 根据用户id获取用户
+     */
+    UmsAdmin getItem(Long id);
+
+    /**
+     * 根据用户名或昵称分页查询用户
+     */
+    List<UmsAdmin> list(String name, Integer pageSize, Integer pageNum);
+
+
+    /**
+     * 刷新token的功能
+     * @param oldToken 旧的token
+     */
+    String refreshToken(String oldToken);
+
+    /**
+     * 修改指定用户信息
+     */
+    int update(Long id, UmsAdmin admin);
 }
