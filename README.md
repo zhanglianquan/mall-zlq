@@ -14,7 +14,7 @@ mall项目是一套电商系统，包括前台商城系统及后台管理系统�
 ##### CREATE TABLE db2.table LIKE db1.table;
 ##### INSERT INTO db2.table SELECT * FROM db1.table;
 
-
+### 注意：PmsBrandController : 商品品牌管理的运行浏览： 用户名：admin, 密码：123456， 请参考：https://juejin.im/post/5cfa0933f265da1b8f1ab2da
 
 运行测试看看效果：
     启动mall-admin项目：直接运行com.zlq.mall.MallAdminApplication的main方法即可， 

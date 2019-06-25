@@ -41,4 +41,20 @@
             pr.type = 1
             AND pr.admin_id = #{adminId}
     </select>
+
+    <select id="getRoleList" resultMap="com.zlq.mall.mapper.UmsRoleMapper.BaseResultMap">
+        select r.*
+        from ums_admin_role_relation ar left join ums_role r on ar.role_id = r.id
+        where ar.admin_id = #{adminId}
+    </select>
+
+
+    <!--批量新增回写主键支持-->
+    <insert id="insertList">
+        INSERT INTO ums_admin_role_relation (admin_id, role_id) VALUES
+        <foreach collection="list" separator="," item="item" index="index">
+            (#{item.adminId,jdbcType=BIGINT},
+            #{item.roleId,jdbcType=BIGINT})
+        </foreach>
+    </insert>
 </mapper>

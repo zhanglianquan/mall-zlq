@@ -38,4 +38,23 @@ public interface UmsAdminService {
      * @return 生成的JWT的token
      */
     String login(String username,String password);
+
+    /**
+     * 修改用户的+-权限
+     */
+    @Transactional
+    int updatePermission(Long adminId, List<Long> permissionIds);
+
+
+    /**
+     * 获取用户对于角色
+     */
+    List<UmsRole> getRoleList(Long adminId);
+
+
+    /**
+     * 修改用户角色关系
+     */
+    @Transactional
+    int updateRole(Long adminId, List<Long> roleIds);
 }

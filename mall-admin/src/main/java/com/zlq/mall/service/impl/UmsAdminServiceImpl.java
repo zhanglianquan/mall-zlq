@@ -1,13 +1,13 @@
 package com.zlq.mall.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.zlq.mall.dao.UmsAdminPermissionRelationDao;
 import com.zlq.mall.dto.UmsAdminParam;
 import com.zlq.mall.mapper.UmsAdminLoginLogMapper;
 import com.zlq.mall.mapper.UmsAdminMapper;
-import com.zlq.mall.model.UmsAdmin;
-import com.zlq.mall.model.UmsAdminExample;
-import com.zlq.mall.model.UmsAdminLoginLog;
-import com.zlq.mall.model.UmsPermission;
+import com.zlq.mall.mapper.UmsAdminPermissionRelationMapper;
+import com.zlq.mall.mapper.UmsAdminRoleRelationMapper;
+import com.zlq.mall.model.*;
 import com.zlq.mall.service.UmsAdminService;
 import com.zlq.mall.util.JwtTokenUtil;
 import org.slf4j.Logger;
@@ -62,6 +62,15 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     private UmsAdminRoleRelationDao adminRoleRelationDao;
     @Autowired
     private UmsAdminLoginLogMapper loginLogMapper;
+
+    @Autowired
+    private UmsAdminPermissionRelationMapper adminPermissionRelationMapper;
+
+    @Autowired
+    private UmsAdminPermissionRelationDao adminPermissionRelationDao;
+
+    @Autowired
+    private UmsAdminRoleRelationMapper adminRoleRelationMapper;
 
 
     @Override
@@ -147,6 +156,70 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         HttpServletRequest request = attributes.getRequest();
         loginLog.setIp(request.getRemoteAddr());
         loginLogMapper.insert(loginLog);
+    }
+
+
+    @Override
+    public int updatePermission(Long adminId, List<Long> permissionIds) {
+        //删除原所有权限关系
+        UmsAdminPermissionRelationExample relationExample = new UmsAdminPermissionRelationExample();
+        relationExample.createCriteria().andAdminIdEqualTo(adminId);
+        adminPermissionRelationMapper.deleteByExample(relationExample);
+        //获取用户所有角色权限
+        List<UmsPermission> permissionList = adminRoleRelationDao.getRolePermissionList(adminId);
+        List<Long> rolePermissionList = permissionList.stream().map(UmsPermission::getId).collect(Collectors.toList());
+        if (!CollectionUtils.isEmpty(permissionIds)) {
+            List<UmsAdminPermissionRelation> relationList = new ArrayList<>();
+            //筛选出+权限
+            List<Long> addPermissionIdList = permissionIds.stream().filter(permissionId -> !rolePermissionList.contains(permissionId)).collect(Collectors.toList());
+            //筛选出-权限
+            List<Long> subPermissionIdList = rolePermissionList.stream().filter(permissionId -> !permissionIds.contains(permissionId)).collect(Collectors.toList());
+            //插入+-权限关系
+            relationList.addAll(convert(adminId,1,addPermissionIdList));
+            relationList.addAll(convert(adminId,-1,subPermissionIdList));
+            return adminPermissionRelationDao.insertList(relationList);
+        }
+        return 0;
+    }
+
+    /**
+     * 将+-权限关系转化为对象
+     */
+    private List<UmsAdminPermissionRelation> convert(Long adminId,Integer type,List<Long> permissionIdList) {
+        List<UmsAdminPermissionRelation> relationList = permissionIdList.stream().map(permissionId -> {
+            UmsAdminPermissionRelation relation = new UmsAdminPermissionRelation();
+            relation.setAdminId(adminId);
+            relation.setType(type);
+            relation.setPermissionId(permissionId);
+            return relation;
+        }).collect(Collectors.toList());
+        return relationList;
+    }
+
+    @Override
+    public List<UmsRole> getRoleList(Long adminId) {
+        return adminRoleRelationDao.getRoleList(adminId);
+    }
+
+    @Override
+    public int updateRole(Long adminId, List<Long> roleIds) {
+        int count = roleIds == null ? 0 : roleIds.size();
+        //先删除原来的关系
+        UmsAdminRoleRelationExample adminRoleRelationExample = new UmsAdminRoleRelationExample();
+        adminRoleRelationExample.createCriteria().andAdminIdEqualTo(adminId);
+        adminRoleRelationMapper.deleteByExample(adminRoleRelationExample);
+        //建立新关系
+        if (!CollectionUtils.isEmpty(roleIds)) {
+            List<UmsAdminRoleRelation> list = new ArrayList<>();
+            for (Long roleId : roleIds) {
+                UmsAdminRoleRelation roleRelation = new UmsAdminRoleRelation();
+                roleRelation.setAdminId(adminId);
+                roleRelation.setRoleId(roleId);
+                list.add(roleRelation);
+            }
+            adminRoleRelationDao.insertList(list);
+        }
+        return count;
     }
 }
 
