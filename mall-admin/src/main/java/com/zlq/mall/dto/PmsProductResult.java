@@ -1,0 +1,23 @@
+package com.zlq.mall.dto;
+
+import com.zlq.mall.model.PmsProduct;
+
+/**
+ * 查询单个产品进行修改时返回的结果
+ *
+ * @author zlq
+ */
+
+public class PmsProductResult extends PmsProductParam {
+    //商品所选分类的父id
+    private Long cateParentId;
+
+    public Long getCateParentId() {
+        return cateParentId;
+    }
+
+    public void setCateParentId(Long cateParentId) {
+        this.cateParentId = cateParentId;
+    }
+
+}

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.macro.mall.dao.PmsProductAttributeDao">
+<mapper namespace="com.zlq.mall.dao.PmsProductAttributeDao">
     <select id="getProductAttrInfo" resultType="com.zlq.mall.dto.ProductAttrInfo">
         SELECT
             pa.id  attributeId,
