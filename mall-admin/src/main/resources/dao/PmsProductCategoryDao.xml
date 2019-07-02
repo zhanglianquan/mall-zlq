@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.macro.mall.dao.PmsProductCategoryDao">
+<mapper namespace="com.zlq.mall.dao.PmsProductCategoryDao">
     <resultMap id="listWithChildrenMap" type="com.zlq.mall.dto.PmsProductCategoryWithChildrenItem"
                extends="com.zlq.mall.mapper.PmsProductCategoryMapper.BaseResultMap">
         <collection property="children" resultMap="com.zlq.mall.mapper.PmsProductCategoryMapper.BaseResultMap"
