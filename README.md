@@ -31,9 +31,10 @@ mall项目是一套电商系统，包括前台商城系统及后台管理系统�
     
     
     
-# 转载： 
-虽然自己把这个项目重新实现了一遍， 但是还是得支持原作者
-源代码： https://github.com/macrozheng/mall
+# 转载：
+## 版权声明是属于: macrozheng 这位作者的，
+## 我自己只是把这个项目重新实现了一遍， 我们得支持原作者
+## 源代码： https://github.com/macrozheng/mall
 ## 其他代码： https://github.com/D2C-Cai/shop-mall
 ## https://gitee.com/zscat-platform/mall
 ## https://github.com/shenzhuan/mallcloud-platform
