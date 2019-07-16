@@ -21,9 +21,13 @@ mall项目是一套电商系统，包括前台商城系统及后台管理系统�
     web浏览器运行接口文档地址：http://localhost:9090/swagger-ui.html;
     添加登录认证，提示要接口权限： https://juejin.im/post/5cfa0933f265da1b8f1ab2da
     
-    运行mall-portal 要先安装mongodb并启动和rabbitmq (https://juejin.im/post/5cff98986fb9a07ed36ea139)
+    运行mall-portal 要先安装mongodb和redis并启动和rabbitmq (https://juejin.im/post/5cff98986fb9a07ed36ea139)
     
     web浏览器运行mall-portal接口文档地址：http://localhost:9085/swagger-ui.html;
+    对于mall-portal 需要鉴权的接口访问， 需要安装redis， 可以通过docker 安装，
+    然后设置 set portal:authCode:18124017853 yanzhengma
+    这样在会员登录注册管理中 电话号码填18124017853， 验证码填：yanzhengma， 用户名：admin， 密码：123456
+    
     
     
 # 转载： 
