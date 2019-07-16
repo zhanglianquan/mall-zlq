@@ -10,10 +10,15 @@ import com.zlq.mall.portal.domain.CommonResult;
 import com.zlq.mall.portal.domain.MemberDetails;
 import com.zlq.mall.portal.service.RedisService;
 import com.zlq.mall.portal.service.UmsMemberService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -41,6 +46,10 @@ public class UmsMemberServiceImpl implements UmsMemberService {
     private String REDIS_KEY_PREFIX_AUTH_CODE;
     @Value("${authCode.expire.seconds}")
     private Long AUTH_CODE_EXPIRE_SECONDS;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+    private static final Logger LOGGER = LoggerFactory.getLogger(UmsMemberServiceImpl.class);
 
     @Override
     public UmsMember getByUsername(String username) {
@@ -145,6 +154,23 @@ public class UmsMemberServiceImpl implements UmsMemberService {
         }
         String realAuthCode = redisService.get(REDIS_KEY_PREFIX_AUTH_CODE + telephone);
         return authCode.equals(realAuthCode);
+    }
+
+
+    @Override
+    public CommonResult login(String username, String password) {
+        CommonResult result;
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(username,
+                passwordEncoder.encodePassword(password, null));
+        try {
+            authenticationManager.authenticate(authentication);
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            result = new CommonResult().success("登录成功");
+        } catch (AuthenticationException e) {
+            LOGGER.warn("登录异常:{}", e.getMessage());
+            result = new CommonResult().failed("登录异常:"+e.getMessage());
+        }
+        return result;
     }
 
 }

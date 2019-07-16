@@ -27,6 +27,7 @@ mall项目是一套电商系统，包括前台商城系统及后台管理系统�
     对于mall-portal 需要鉴权的接口访问， 需要安装redis， 可以通过docker 安装，
     然后设置 set portal:authCode:18124017853 yanzhengma
     这样在会员登录注册管理中 电话号码填18124017853， 验证码填：yanzhengma， 用户名：admin， 密码：123456
+    然后用用户名：admin， 密码：123456 登陆成功后就不会鉴权接口了
     
     
     

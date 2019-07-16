@@ -44,4 +44,10 @@ public interface UmsMemberService {
      * 根据会员id修改会员积分
      */
     void updateIntegration(Long id, Integer integration);
+
+
+    /**
+     * 登录操作
+     */
+    CommonResult login(String username, String password);
 }

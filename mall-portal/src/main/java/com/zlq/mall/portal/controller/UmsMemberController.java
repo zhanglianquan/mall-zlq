@@ -45,4 +45,19 @@ public class UmsMemberController {
                                  @RequestParam String authCode) {
         return memberService.updatePassword(telephone,password,authCode);
     }
+
+    @ApiOperation("登录")
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @ResponseBody
+    public Object login(@RequestParam String username, @RequestParam String password) {
+        return memberService.login(username,password);
+    }
+
+
+    @ApiOperation("登出操作")
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    @ResponseBody
+    public Object logout() {
+        return null;
+    }
 }
