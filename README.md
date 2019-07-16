@@ -21,6 +21,10 @@ mall项目是一套电商系统，包括前台商城系统及后台管理系统�
     web浏览器运行接口文档地址：http://localhost:9090/swagger-ui.html;
     添加登录认证，提示要接口权限： https://juejin.im/post/5cfa0933f265da1b8f1ab2da
     
+    运行mall-portal 要先安装mongodb并启动和rabbitmq (https://juejin.im/post/5cff98986fb9a07ed36ea139)
+    
+    web浏览器运行mall-portal接口文档地址：http://localhost:9085/swagger-ui.html;
+    
     
 # 转载： 
 虽然自己把这个项目重新实现了一遍， 但是还是得支持原作者
