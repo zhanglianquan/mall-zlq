@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.*;
  *   "payType": 0,
  *   "useIntegration": 100
  * }
- *测试：UmsMemberCouponServiceImpl的listCart函数屏蔽，开启：
+ *每次测试：需要修改的地方1：如果couponId和useIntegration为空， 那么不需要修改1， 直接修改2
+ *
+ * UmsMemberCouponServiceImpl的 listCart 函数屏蔽，开启：
  * //                if(now.before(endTime)&&totalAmount.intValue()>0&&totalAmount.subtract(minPoint).intValue()>=0){
  * //                    enableList.add(couponHistoryDetail);
  * //                }else{
@@ -27,7 +29,7 @@ import org.springframework.web.bind.annotation.*;
  * //                }
  *
  *                 enableList.add(couponHistoryDetail);
- * 每次测试完成优惠券后将表： oms_cart_item的 对应的member_id 的delete_status 重置为0，
+ * 需要修改的地方2：每次测试完成优惠券后将表： oms_cart_item的 对应的member_id 的delete_status 重置为0，
  * sms_coupon_history表对应的member_id 的use_status重置为0，
  * 这样测试下单成功
  */
