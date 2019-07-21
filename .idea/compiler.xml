@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="mall-admin" />
+        <module name="mall-search" />
         <module name="mall-portal" />
         <module name="mall-mbg" />
       </profile>

@@ -13,6 +13,7 @@
         <module>mall-mbg</module>
         <module>mall-admin</module>
         <module>mall-portal</module>
+        <module>mall-search</module>
     </modules>
 
 </project>
