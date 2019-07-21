@@ -22,7 +22,7 @@ public class Swagger2Config {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.macro.mall.search.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.zlq.mall.search.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
@@ -31,7 +31,7 @@ public class Swagger2Config {
         return new ApiInfoBuilder()
                 .title("mall搜索系统")
                 .description("mall搜索模块")
-                .contact("macro")
+                .contact("zlq")
                 .version("1.0")
                 .build();
     }

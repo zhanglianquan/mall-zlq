@@ -16,6 +16,8 @@ import java.util.List;
 
 /**
  * 搜索商品管理Controller
+ * https://zhuanlan.zhihu.com/p/74595962
+ * https://juejin.im/post/5cfba3e9f265da1b614fea60
  */
 @Controller
 @Api(tags = "EsProductController", description = "搜索商品管理")
