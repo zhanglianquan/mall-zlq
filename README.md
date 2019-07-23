@@ -29,6 +29,9 @@ mall项目是一套电商系统，包括前台商城系统及后台管理系统�
     这样在会员登录注册管理中 电话号码填18124017853， 验证码填：yanzhengma， 用户名：admin， 密码：123456
     然后用用户名：admin， 密码：123456 登陆成功后就不会鉴权接口了
     
+    web浏览器运行mall-search接口文档地址：http://localhost:9081/swagger-ui.html
+    如果提示es版本和spring boot的兼容问题：参考： https://zhuanlan.zhihu.com/p/74595962 解决
+    
     
     
 # 转载：
